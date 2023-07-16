@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Administration{% endblock %}
+{% block content%}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<div id="rolbox">
+  <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="home">Roles</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="polls">Polls</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Admin</a>
+  </li>
+</ul>
+</div>
+<div id="rolbox">
+  <div id="srolbox">
+    <h3>Welcome to the admin page, {{user}}</h3>
+  </div>
+  <div id="srolbox">
+  <form method="post" action="#">
+  <label for="question">Question:</label>
+  <input type="text" id="question" name="question" required>
+  
+  <label for="response1">Response 1:</label>
+  <input type="text" id="response1" name="response" required>
+
+  <div id="response-container"></div>
+
+  <button type="button" onclick="addResponseField()">Add Response</button>
+
+  <button type="submit">Create Poll</button>
+  </form>
+  </div>
+</div>
+<script>
+  var responseCounter = 2; // Start with the next response index
+
+  function addResponseField() {
+    var container = document.getElementById("response-container");
+
+    var label = document.createElement("label");
+    label.setAttribute("for", "response" + responseCounter);
+    label.textContent = "Response " + responseCounter + ":";
+
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", "response" + responseCounter);
+    input.setAttribute("name", "response");
+    input.required = true;
+
+    container.appendChild(label);
+    container.appendChild(input);
+
+    responseCounter++;
+  }
+</script>
+{% endblock %}
