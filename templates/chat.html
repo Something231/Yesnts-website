@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<h5>Welcome to chat</h5>
+<h5>Your username is: {{user}}</h5>
+{% for m in hist %}
+  <p>{{m}}</p>
+{% endfor %}
+<form action="#" method="post">
+  <p><input type="text" name="mxg" placeholder="Enter your message here" /></p>
+  <p><input type="submit" name="submit"/></p> 
+{% endblock %}
