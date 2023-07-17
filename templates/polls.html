@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block imports %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+{% block title %}Polls{% endblock %}
+{% block content%}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<div id="rolbox">
+  <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="home">Roles</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="polls">Polls</a>
+  </li>
+  {% if coconut == "yes" %}
+    <li class="nav-item">
+    <a class="nav-link" href="admin">Admin</a>
+    </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link disabled">Admin</a>
+  </li>
+  {% endif %}
+</ul>
+</div>
+<div id="rolbox">
+  <h3>Poll results</h3>
+  <div id="srolbox">
+    {{ graph_div | safe }}
+  </div>
+  <h3>Voting</h3>
+  <div id="srolbox">
+    {% if not has_voted %}
+      <form method="post">
+        {% for response in poll_data.responses %}
+        <div>
+          <input type="radio" id="option1" name="choice" value={{response}}>
+          <label for="option1">{{response}}</label>
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+      </form>
+    {% else %}
+      <p>You have already voted. Thank you!</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
