@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}User{% endblock %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<p>Welcome, {{user}}</p>
+<p>This your user profile page</p>
+<p>Select home on the navbar to view home</p>
+<p>Select chat on the navbar to use chat</p>
+{% endblock %}
