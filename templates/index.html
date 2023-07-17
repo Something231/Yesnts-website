@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content%}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<div id="rolbox">
+  <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="home">Roles</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="polls">Polls</a>
+  </li>
+  {% if coconut == "yes" %}
+    <li class="nav-item">
+    <a class="nav-link" href="admin">Admin</a>
+    </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link disabled">Admin</a>
+  </li>
+  {% endif %}
+</ul>
+</div>
+<div id="rolbox">
+  <h3>Roles</h3>
+  <div id="srolbox">
+    <p>User: admin</p>
+    <p>Role: Governor</p>
+    <p>Powers: Administrator</p>
+  </div>
+</div>
+{% endblock %}
