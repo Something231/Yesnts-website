@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+{% block title %}Create nation{% endblock %}
+{% block imports %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style2.css' )}}">
+{% endblock %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="container">
+    <h1>Create your nation</h1>
+    <p class="quiz-info">Before you can create your nation, we'd like to know your views on politics. Please take this short politics quiz to proceed:</p>
+  <form method="post">
+    <h3>How do you believe leaders should be selected?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1">
+        <input type="radio" id="option1" name="choice1" value="1" required>
+        Through free and fair elections
+      </label>
+      <label class="radio-label" for="option2">
+        <input type="radio" id="option2" name="choice1" value="2" required>
+        By a strong and authoritative leader
+      </label>
+      <label class="radio-label" for="option3">
+        <input type="radio" id="option3" name="choice1" value="3" required>
+        Based on hereditary or divine right
+      </label>
+      <label class="radio-label" for="option4">
+        <input type="radio" id="option4" name="choice1" value="4" required>
+        By those with influence and wealth
+      </label>
+    </div>
+    <h3>What role should the government play in the economy?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1b">
+        <input type="radio" id="option1b" name="choice2" value="1" required>
+        Limited government intervention
+      </label>
+      <label class="radio-label" for="option2b">
+        <input type="radio" id="option2b" name="choice2" value="2" required>
+        Significant regulation and control
+      </label>
+      <label class="radio-label" for="option3b">
+        <input type="radio" id="option3b" name="choice2" value="3" required>
+        Complete government control
+      </label>
+      <label class="radio-label" for="option4b">
+        <input type="radio" id="option4b" name="choice2" value="4" required>
+        Balanced approach
+      </label>
+    </div>
+    <h3>How should the government prioritize social welfare?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1c">
+        <input type="radio" id="option1c" name="choice3" value="1" required>
+        Minimal welfare support
+      </label>
+      <label class="radio-label" for="option2c">
+        <input type="radio" id="option2c" name="choice3" value="2" required>
+        Basic safety nets
+      </label>
+      <label class="radio-label" for="option3c">
+        <input type="radio" id="option3c" name="choice3" value="3" required>
+        Extensive social services
+      </label>
+      <label class="radio-label" for="option4c">
+        <input type="radio" id="option4c" name="choice3" value="4" required>
+        Targeted support for economic gains
+      </label>
+    </div>
+    <h3>What is your stance on technological progress and innovation?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1d">
+        <input type="radio" id="option1d" name="choice4" value="1" required>
+        Embrace technological advancements
+      </label>
+      <label class="radio-label" for="option2d">
+        <input type="radio" id="option2d" name="choice4" value="2" required>
+        Cautious approach
+      </label>
+      <label class="radio-label" for="option3d">
+        <input type="radio" id="option3d" name="choice4" value="3" required>
+        Limit technological progress
+      </label>
+      <label class="radio-label" for="option4d">
+        <input type="radio" id="option4d" name="choice4" value="4" required>
+        Use technology for economic gains
+      </label>
+    </div>
+    <h3>How should your nation interact with other countries?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1e">
+        <input type="radio" id="option1e" name="choice5" value="1" required>
+        Diplomatic and cooperative
+      </label>
+      <label class="radio-label" for="option2e">
+        <input type="radio" id="option2e" name="choice5" value="2" required>
+        Strong and assertive
+      </label>
+      <label class="radio-label" for="option3e">
+        <input type="radio" id="option3e" name="choice5" value="3" required>
+        Neutral and non-interfering
+      </label>
+      <label class="radio-label" for="option4e">
+        <input type="radio" id="option4e" name="choice5" value="4" required>
+        Strategic and opportunistic
+      </label>
+    </div>
+    <h3>What is your view on environmental conservation and protection?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1f">
+        <input type="radio" id="option1f" name="choice6" value="1" required>
+        Strong commitment to conservation
+      </label>
+      <label class="radio-label" for="option2f">
+        <input type="radio" id="option2f" name="choice6" value="2" required>
+        Balanced approach
+      </label>
+      <label class="radio-label" for="option3f">
+        <input type="radio" id="option3f" name="choice6" value="3" required>
+        Secondary priority to economic growth
+      </label>
+      <label class="radio-label" for="option4f">
+        <input type="radio" id="option4f" name="choice6" value="4" required>
+        Moderate approach
+      </label>
+    </div>
+    <h3>How should the legal system handle criminal justice?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1g">
+        <input type="radio" id="option1g" name="choice7" value="1" required>
+        Focus on rehabilitation
+      </label>
+      <label class="radio-label" for="option2g">
+        <input type="radio" id="option2g" name="choice7" value="2" required>
+         Emphasize punishment
+      </label>
+      <label class="radio-label" for="option3g">
+        <input type="radio" id="option3g" name="choice7" value="3" required>
+        Uphold traditional values
+      </label>
+      <label class="radio-label" for="option4g">
+        <input type="radio" id="option4g" name="choice7" value="4" required>
+        Tailor punishments to fit crime severity
+      </label>
+    </div>
+    <h3>What is your view on individual freedoms and civil liberties?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1h">
+        <input type="radio" id="option1h" name="choice8" value="1" required>
+        Strongly protect individual freedoms
+      </label>
+      <label class="radio-label" for="option2h">
+        <input type="radio" id="option2h" name="choice8" value="2" required>
+        Balance individual freedoms with state needs
+      </label>
+      <label class="radio-label" for="option3h">
+        <input type="radio" id="option3h" name="choice8" value="3" required>
+        Prioritize societal harmony
+      </label>
+      <label class="radio-label" for="option4h">
+        <input type="radio" id="option4h" name="choice8" value="4" required>
+        Protect individual freedoms aligned with common good
+      </label>
+    </div>
+    <h3>How should your nation approach education and knowledge?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1i">
+        <input type="radio" id="option1i" name="choice9" value="1" required>
+        Invest heavily in education
+      </label>
+      <label class="radio-label" for="option2i">
+        <input type="radio" id="option2i" name="choice9" value="2" required>
+        Provide practical skills education
+      </label>
+      <label class="radio-label" for="option3i">
+        <input type="radio" id="option3i" name="choice9" value="3" required>
+        Preserve traditional values and knowledge
+      </label>
+      <label class="radio-label" for="option4i">
+        <input type="radio" id="option4i" name="choice9" value="4" required>
+        Focus on education for national competitiveness
+      </label>
+    </div>
+    <h3>What is your view on income and wealth distribution?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1j">
+        <input type="radio" id="option1j" name="choice10" value="1" required>
+        Support progressive taxation
+      </label>
+      <label class="radio-label" for="option2j">
+        <input type="radio" id="option2j" name="choice10" value="2" required>
+        Let the market determine income distribution
+      </label>
+      <label class="radio-label" for="option3j">
+        <input type="radio" id="option3j" name="choice10" value="3" required>
+        Advocate for equal wealth distribution
+      </label>
+      <label class="radio-label" for="option4j">
+        <input type="radio" id="option4j" name="choice10" value="4" required>
+        Encourage wealth creation for society
+      </label>
+    </div>
+    <h3>How should your nation handle international conflicts and alliances?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1k">
+        <input type="radio" id="option1k" name="choice11" value="1" required>
+        Promote diplomacy and peace
+      </label>
+      <label class="radio-label" for="option2k">
+        <input type="radio" id="option2k" name="choice11" value="2" required>
+        Prioritize alliances for national interests
+      </label>
+      <label class="radio-label" for="option3k">
+        <input type="radio" id="option3k" name="choice11" value="3" required>
+        Avoid involvement, maintain neutrality
+      </label>
+      <label class="radio-label" for="option4k">
+        <input type="radio" id="option4k" name="choice11" value="4" required>
+        Form alliances for economic gains
+      </label>
+    </div>
+    <h3>What role should culture and heritage play in your nation?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1l">
+        <input type="radio" id="option1l" name="choice12" value="1" required>
+        Embrace diverse cultures
+      </label>
+      <label class="radio-label" for="option2l">
+        <input type="radio" id="option2l" name="choice12" value="2" required>
+         Preserve traditional cultural values
+      </label>
+      <label class="radio-label" for="option3l">
+        <input type="radio" id="option3l" name="choice12" value="3" required>
+        Promote a singular national identity
+      </label>
+      <label class="radio-label" for="option4l">
+        <input type="radio" id="option4l" name="choice12" value="4" required>
+        Use culture for soft power and influence
+      </label>
+    </div>
+    <h3>How should your nation handle immigration and refugees?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1m">
+        <input type="radio" id="option1m" name="choice13" value="1" required>
+        Provide a welcoming environment
+      </label>
+      <label class="radio-label" for="option2m">
+        <input type="radio" id="option2m" name="choice13" value="2" required>
+        Screen immigrants and refugees carefully
+      </label>
+      <label class="radio-label" for="option3m">
+        <input type="radio" id="option3m" name="choice13" value="3" required>
+        Limit immigration to preserve identity
+      </label>
+      <label class="radio-label" for="option4m">
+        <input type="radio" id="option4m" name="choice13" value="4" required>
+        Encourage immigration of skilled workers
+      </label>
+    </div>
+    <h3>What is your view on the role of the military in your nation?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1n">
+        <input type="radio" id="option1n" name="choice14" value="1" required>
+        Maintain a strong military for defense only
+      </label>
+      <label class="radio-label" for="option2n">
+        <input type="radio" id="option2n" name="choice14" value="2" required>
+        Build a powerful military for protection and power projection
+      </label>
+      <label class="radio-label" for="option3n">
+        <input type="radio" id="option3n" name="choice14" value="3" required>
+        Minimize military presence, prioritize non-violent solutions
+      </label>
+      <label class="radio-label" for="option4n">
+        <input type="radio" id="option4n" name="choice14" value="4" required>
+        Utilize the military for economic and geopolitical interests
+      </label>
+    </div>
+    <h3>What is your stance on public healthcare and social services?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1o">
+        <input type="radio" id="option1o" name="choice15" value="1" required>
+        Advocate for universal healthcare
+      </label>
+      <label class="radio-label" for="option2o">
+        <input type="radio" id="option2o" name="choice15" value="2" required>
+        Provide some public healthcare to those in need
+      </label>
+      <label class="radio-label" for="option3o">
+        <input type="radio" id="option3o" name="choice15" value="3" required>
+        Limit public healthcare, prioritize private sector
+      </label>
+      <label class="radio-label" for="option4o">
+        <input type="radio" id="option4o" name="choice15" value="4" required>
+        Use social services for economic productivity
+      </label>
+    </div>
+    <h3>What role should religion play in your nation's governance?</h3>
+    <div class="radio-group">
+      <label class="radio-label" for="option1p">
+        <input type="radio" id="option1p" name="choice16" value="1" required>
+        Strict separation of religion and state
+      </label>
+      <label class="radio-label" for="option2p">
+        <input type="radio" id="option2p" name="choice16" value="2" required>
+        Religion informs certain policies
+      </label>
+      <label class="radio-label" for="option3p">
+        <input type="radio" id="option3p" name="choice16" value="3" required>
+        Embrace religious principles in laws and decisions
+      </label>
+      <label class="radio-label" for="option4p">
+        <input type="radio" id="option4p" name="choice16" value="4" required>
+        Recognize various religions but avoid significant influence
+      </label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  </div>
+{% endblock %}
