@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from replit import db
+from nation_logic import create_nation
 import secrets
 import json
 import plotly.graph_objects as go
@@ -102,13 +103,51 @@ def register():
       return redirect(url_for('register'))
     password = request.form["pcode"]
     db[user] = [password]
-    flash("Account Created - Please sign in")
-    return redirect(url_for("login"))
+    session["user"] = user
+    return redirect(url_for("cnat"))
   else:
     if "user" in session:
       flash("Already Logged in!")
       return redirect(url_for("user"))
     return render_template("register.html")
+
+@app.route("/create_nation", methods=["POST", "GET"])
+def cnat():
+  if request.method == "POST":
+    c1 = request.form['choice1']
+    c2 = request.form['choice2']
+    c3 = request.form['choice3']
+    c4 = request.form['choice4']
+    c5 = request.form['choice5']
+    c6 = request.form['choice6']
+    c7 = request.form['choice7']
+    c8 = request.form['choice8']
+    c9 = request.form['choice9']
+    c10 = request.form['choice10']
+    c11 = request.form['choice11']
+    c12 = request.form['choice12']
+    c13 = request.form['choice13']
+    c14 = request.form['choice14']
+    c15 = request.form['choice15']
+    c16 = request.form['choice16']
+    user = session["user"]
+    nation = create_nation(user, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16)
+    flash("Nation created successfully")
+    print(nation)
+    return redirect(url_for("user"))
+  else:
+    if "user" in session:
+      with open("nation_data.json", "r") as json_file:
+        users_data = json.load(json_file)
+      userid = session["user"]
+      if userid in users_data:
+        flash("You already have created a nation")
+        return redirect(url_for("home"))
+      else:
+        return render_template("crnat.html")
+    else:
+      flash("Please sign in to use this")
+      return redirect(url_for("login"))
 
 
 @app.route("/user")
@@ -201,5 +240,4 @@ def rascam():
 
 
 if __name__ == "__main__":
-  print("nein")
   app.run(host='0.0.0.0', port=8080)
